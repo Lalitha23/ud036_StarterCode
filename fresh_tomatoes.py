@@ -39,6 +39,10 @@ main_page_head = '''
             margin-bottom: 20px;
             padding-top: 20px;
         }
+        .extended-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
         .movie-tile:hover {
             background-color: #EEE;
             cursor: pointer;
@@ -77,7 +81,7 @@ main_page_head = '''
         });
         // Animate in the movies when the page loads
         $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
+          $('.extended-tile').hide().first().show("fast", function showNext() {
             $(this).next("div").show("fast", showNext);
           });
         });
@@ -121,10 +125,16 @@ main_page_content = '''
 
 
 # A single movie entry html template
+# Hovering on image shows storyline, release date and rating
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+<div class="col-md-6 col-lg-4 extended-title text-center">
+    <div class="movie-tile" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+        <a class="textover" title="Storyline: {movie_storyline}\nReleaseDate: {movie_release_date}\nRatings: {movie_ratings}" style="background-color:#FFFFFF;color:#000000"><img src="{poster_image_url}" width="220" height="342"></a>
+        <a href= " " data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer"></a>
+    </div>
+    <div class=imdb>
+        <h2><a herf="{imdb_link}">{movie_title}</a></h2>
+    </div>
 </div>
 '''
 
@@ -145,7 +155,11 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            movie_storyline=movie.storyline,
+            movie_release_date = movie.release_date,
+            movie_ratings = movie.ratings,
+            imdb_link = movie.imdb_link
         )
     return content
 
