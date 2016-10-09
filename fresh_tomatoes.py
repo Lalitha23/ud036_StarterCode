@@ -36,8 +36,6 @@ main_page_head = '''
             height: 100%;
         }
         .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
         }
         .extended-tile {
             margin-bottom: 20px;
@@ -59,6 +57,9 @@ main_page_head = '''
             left: 0;
             top: 0;
             background-color: white;
+        }
+        .imdb-link {
+            font-size: 70%
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -129,11 +130,10 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 extended-title text-center">
     <div class="movie-tile" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-        <a class="textover" title="Storyline: {movie_storyline}\nReleaseDate: {movie_release_date}\nRatings: {movie_ratings}" style="background-color:#FFFFFF;color:#000000"><img src="{poster_image_url}" width="220" height="342"></a>
-        <a href= " " data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer"></a>
+      <a class="textover" title="Storyline: {movie_storyline}\nReleaseDate: {movie_release_date}\nRatings: {movie_ratings}" style="background-color:#FFFFFF;color:#000000"><img src="{poster_image_url}" width="220" height="342"></a>
     </div>
-    <div class=imdb>
-        <h2><a herf="{imdb_link}">{movie_title}</a></h2>
+    <div class="imdb-link">
+      <a href="{imdb_link}" target="_blank"><h2>{movie_title}</h2></a>
     </div>
 </div>
 '''
